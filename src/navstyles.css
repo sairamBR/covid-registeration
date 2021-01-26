@@ -1,0 +1,24 @@
+nav{
+    display:flex;
+    align-items: center;
+    min-height: 10vh;
+    background-color: black;
+    color: white;
+   
+}
+.nav-links{
+    margin-left: 450px;
+    list-style: none;
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-around;
+}
+.logocontainer{
+    width: 150px;
+}
+.linkscontainer{
+    margin-left: 400px;
+}
+.button{
+    margin: 5px;
+}

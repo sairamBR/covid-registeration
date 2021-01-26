@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/Registration",
+            "lambdaFunction": "RegistrationFunction",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/Registration"
+        }
+    ],
+    "resourceName": "VaccineRegistration",
+    "apiName": "VaccineRegistration",
+    "functionArns": [
+        {
+            "lambdaFunction": "RegistrationFunction"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-covidregisteration-dev-121248-authRole",
+        "unAuthRoleName": "amplify-covidregisteration-dev-121248-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "RegistrationFunction",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}
