@@ -41,6 +41,7 @@ function Register() {
       }
     })
    }
+
    const history = useHistory();
     const routeChange = () => {
      let path= 'src/App.js';
@@ -76,7 +77,7 @@ function Register() {
        <input value={PersonDiabetics} placeholder="Diabetics" onChange={(e) => setPersonDiabetics(e.target.value)} className="inputbox" /><br />
        <p className="textstyle">Allergies</p>
        <input value={PersonAllergies} placeholder="Allergies" onChange={(e) => setPersonAllgeries(e.target.value)} className="inputbox" /><br />
-       <button onClick={routeChange}>Submit</button>
+       <button >Submit</button>
      </form> 
      </div> 
     </div>
