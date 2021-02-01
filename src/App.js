@@ -20,6 +20,7 @@ function App() {
         <Route path='/' exact component={Home} />
         <Route path='/register/' component={Register} />
         <Route path='/profile' component={Profile} />
+        <Route path='/register/src/App.js' component={Home}/>
         </Switch>
       </div>
     </Router>
