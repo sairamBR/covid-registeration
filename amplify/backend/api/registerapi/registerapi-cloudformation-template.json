@@ -14,15 +14,15 @@
         },
     
     
-          "functionRegistrationFunctionName": {
+          "functionregisterFunctionName": {
             "Type": "String",
-            "Default": "functionRegistrationFunctionName"
+            "Default": "functionregisterFunctionName"
           },
         
           
-          "functionRegistrationFunctionArn": {
+          "functionregisterFunctionArn": {
             "Type": "String",
-            "Default": "functionRegistrationFunctionArn"
+            "Default": "functionregisterFunctionArn"
           }
         
           
@@ -41,20 +41,182 @@
     },
     "Resources": {
         
+        "PolicyAPIGWregisterapiauth": {
+            "DependsOn": [
+              "registerapi"
+            ],
+            "Type": "AWS::IAM::Policy",
+            "Properties": {
+              "PolicyName": "PolicyAPIGWregisterapiauth",
+              "Roles": [
+                {"Ref": "authRoleName"}
+              ],
+              "PolicyDocument": {
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Effect": "Allow",
+                    "Action": [
+                      "execute-api:Invoke"
+                    ],
+                    "Resource": [
+                    
+                    
+                    
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "registerapi"
+                            },
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                              "/POST",
+                            "/register/*"
+                          ]
+                        ]
+                      },
+                                            {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "registerapi"
+                            },
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                              "/POST",
+                            "/register"
+                          ]
+                        ]
+                      }
+                    
+                      ,
+                    
+                    
+                      {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "registerapi"
+                            },
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                              "/GET",
+                            "/register/*"
+                          ]
+                        ]
+                      },
+                                            {
+                        "Fn::Join": [
+                          "",
+                          [
+                            "arn:aws:execute-api:",
+                            {
+                              "Ref": "AWS::Region"
+                            },
+                            ":",
+                            {
+                              "Ref": "AWS::AccountId"
+                            },
+                            ":",
+                            {
+                              "Ref": "registerapi"
+                            },
+                            "/",
+                            {
+                              "Fn::If": [
+                                "ShouldNotCreateEnvResources",
+                                "Prod", 
+                                {
+                                  "Ref": "env"
+                                } 
+                              ]
+                            },
+                              "/GET",
+                            "/register"
+                          ]
+                        ]
+                      }
+                    
+                    
+                    
+                    
+                    
+                    ]
+                  }
+                ]
+              }
+            }
+          },
         
         
         
         
-      "VaccineRegistration": {
+        
+      "registerapi": {
         "Type": "AWS::ApiGateway::RestApi",
         "Properties": {
           "Description": "",
-          "Name": "VaccineRegistration",
+          "Name": "registerapi",
           "Body": {
             "swagger": "2.0",
             "info": {
               "version": "2018-05-24T17:52:00Z",
-              "title": "VaccineRegistration"
+              "title": "registerapi"
             },
             "host": {
                 "Fn::Join": [
@@ -90,7 +252,7 @@
             ],
             "paths": {
               
-              "/Registration": {
+              "/register": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -157,6 +319,12 @@
                       }
                     }
                   },
+                          
+                    "security": [
+                        {
+                          "sigv4": []
+                        }
+                      ],
                   
                   "x-amazon-apigateway-integration": {
                     "responses": {
@@ -176,7 +344,7 @@
                             
                             {
                                 
-                                "Ref": "functionRegistrationFunctionArn"
+                                "Ref": "functionregisterFunctionArn"
                             },
                             
                             "/invocations"
@@ -189,7 +357,7 @@
                   }
                 }
               },
-              "/Registration/{proxy+}": {
+              "/register/{proxy+}": {
                 "options": {
                   "consumes": [
                     "application/json"
@@ -256,6 +424,12 @@
                       }
                     }
                   },
+                          
+                    "security": [
+                        {
+                          "sigv4": []
+                        }
+                      ],
                   
                   "x-amazon-apigateway-integration": {
                     "responses": {
@@ -275,7 +449,7 @@
                           
                           {
                             
-                            "Ref": "functionRegistrationFunctionArn"
+                            "Ref": "functionregisterFunctionArn"
                           },
                           
                           "/invocations"
@@ -332,12 +506,12 @@
                   
         
         
-        "functionRegistrationFunctionPermissionVaccineRegistration": {
+        "functionregisterFunctionPermissionregisterapi": {
             "Type": "AWS::Lambda::Permission",
             "Properties": {
                 "FunctionName": 
                     {
-                        "Ref":  "functionRegistrationFunctionName"
+                        "Ref":  "functionregisterFunctionName"
                     },
                     
                     "Action": "lambda:InvokeFunction",
@@ -356,7 +530,7 @@
                             },
                             ":",
                             {
-                                "Ref": "VaccineRegistration"
+                                "Ref": "registerapi"
                             },
                             "/*/*/*"
                         ]
@@ -367,7 +541,7 @@
         
         
         
-      "DeploymentAPIGWVaccineRegistration": {
+      "DeploymentAPIGWregisterapi": {
         "Type": "AWS::ApiGateway::Deployment",
         "Properties": {
           "Description": "The Development stage deployment of your API.",
@@ -381,7 +555,7 @@
             ]
           },
           "RestApiId": {
-            "Ref": "VaccineRegistration"
+            "Ref": "registerapi"
           }
         }
       }
@@ -389,15 +563,15 @@
     "Outputs": {
         "RootUrl": {
             "Description": "Root URL of the API gateway",
-            "Value": {"Fn::Join": ["", ["https://", {"Ref": "VaccineRegistration"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
+            "Value": {"Fn::Join": ["", ["https://", {"Ref": "registerapi"}, ".execute-api.", {"Ref": "AWS::Region"}, ".amazonaws.com/", {"Fn::If": ["ShouldNotCreateEnvResources","Prod", {"Ref": "env"} ]}]]}
         },
         "ApiName": {
           "Description": "API Friendly name",
-          "Value": "VaccineRegistration"
+          "Value": "registerapi"
         },
         "ApiId": {
           "Description": "API ID (prefix of API URL)",
-          "Value": {"Ref": "VaccineRegistration"}
+          "Value": {"Ref": "registerapi"}
         }
     }
   }

@@ -9,7 +9,11 @@
     "amplify/backend/awscloudformation": true
   },
   "cSpell.words": [
+    "Allgeries",
     "Covaccine",
-    "frontside"
+    "formstyles",
+    "frontside",
+    "inputbox",
+    "petsapi"
   ]
 }

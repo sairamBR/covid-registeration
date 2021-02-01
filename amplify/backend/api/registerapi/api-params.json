@@ -1,23 +1,27 @@
 {
     "paths": [
         {
-            "name": "/Registration",
-            "lambdaFunction": "RegistrationFunction",
+            "name": "/register",
+            "lambdaFunction": "registerFunction",
             "privacy": {
-                "open": true
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET"
+                ]
             },
-            "policyResourceName": "/Registration"
+            "policyResourceName": "/register"
         }
     ],
-    "resourceName": "VaccineRegistration",
-    "apiName": "VaccineRegistration",
+    "resourceName": "registerapi",
+    "apiName": "registerapi",
     "functionArns": [
         {
-            "lambdaFunction": "RegistrationFunction"
+            "lambdaFunction": "registerFunction"
         }
     ],
     "privacy": {
-        "auth": 0,
+        "auth": 1,
         "unauth": 0,
         "authRoleName": "amplify-covidregisteration-dev-121248-authRole",
         "unAuthRoleName": "amplify-covidregisteration-dev-121248-unauthRole"
@@ -25,7 +29,7 @@
     "dependsOn": [
         {
             "category": "function",
-            "resourceName": "RegistrationFunction",
+            "resourceName": "registerFunction",
             "attributes": [
                 "Name",
                 "Arn"

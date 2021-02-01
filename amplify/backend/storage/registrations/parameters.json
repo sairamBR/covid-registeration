@@ -1,0 +1,7 @@
+{
+    "tableName": "registrations",
+    "partitionKeyName": "AadherNo",
+    "partitionKeyType": "S",
+    "sortKeyName": "PhoneNo",
+    "sortKeyType": "S"
+}

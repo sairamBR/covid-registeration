@@ -40,20 +40,20 @@
                 "AttributeDefinitions": [
                   
                   {
-                      "AttributeName": "PhoneNo",
-                      "AttributeType": "N"
+                      "AttributeName": "AadherNo",
+                      "AttributeType": "S"
                   }  , 
                   
                   {
-                      "AttributeName": "AadherCardNumber",
-                      "AttributeType": "N"
+                      "AttributeName": "PhoneNo",
+                      "AttributeType": "S"
                   } 
                   
                 ],
                 "KeySchema": [
                   
                   {
-                    "AttributeName": "AadherCardNumber",
+                    "AttributeName": "AadherNo",
                     "KeyType": "HASH"
                   }  , 
                   

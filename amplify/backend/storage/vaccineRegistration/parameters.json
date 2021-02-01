@@ -1,7 +1,0 @@
-{
-    "tableName": "Registration",
-    "partitionKeyName": "AadherCardNumber",
-    "partitionKeyType": "N",
-    "sortKeyName": "PhoneNo",
-    "sortKeyType": "N"
-}
